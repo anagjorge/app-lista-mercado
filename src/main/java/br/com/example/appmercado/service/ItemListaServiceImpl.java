@@ -24,6 +24,5 @@ public class ItemListaServiceImpl implements IItemListaService {
     @Override
     public void removerItem(Integer numSeq) {
          repo.deleteById(numSeq);
-
     }
 }

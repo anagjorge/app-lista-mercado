@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class ListaController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class ListaController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/lista")
+    @PostMapping("/listas")
     public ResponseEntity<Lista> adicionarNova(@RequestBody Lista nova) {
         Lista res = service.criarNovaLista(nova);
         if (res != null) {
@@ -47,7 +48,7 @@ public class ListaController {
         return ResponseEntity.badRequest().build();
     }
 
-    @DeleteMapping("/listas/{id")
+    @DeleteMapping("/listas/{id}")
     public ResponseEntity<?> removerLista(@PathVariable Integer id) {
         service.removerLista(id);
         return ResponseEntity.ok("ok");

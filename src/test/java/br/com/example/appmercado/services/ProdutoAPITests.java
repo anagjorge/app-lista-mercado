@@ -17,12 +17,14 @@ public class ProdutoAPITests {
     @Autowired
     private MockMvc mvc;
 
-    @Test
-    public void deveriaRetornarProdutoPorId() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/produtos/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
+    private Integer existingId = 1;
+
+	@Test
+	public void deveriaRetornarProdutoPorId() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/produtos/1"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andDo(MockMvcResultHandlers.print());
+	}
 
     @Test
     public void deveriaNaoEncontrarProduto() throws Exception {

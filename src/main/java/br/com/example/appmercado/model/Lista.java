@@ -1,5 +1,6 @@
 package br.com.example.appmercado.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_lista")
 public class Lista {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_lista")
@@ -29,7 +29,6 @@ public class Lista {
     private Integer status;
 
     @OneToMany(mappedBy = "lista", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("lista")
     private List<ItemLista> itens;
-
-
 }

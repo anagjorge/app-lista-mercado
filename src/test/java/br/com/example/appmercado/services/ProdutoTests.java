@@ -72,7 +72,6 @@ public class ProdutoTests {
     @Test
     public void deveriaCadastrarProduto(){
         assertEquals(service.criarNovoProduto(newProduct), createdProduct);
-
     }
 
     @Test
