@@ -31,6 +31,24 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Listing contents
       run: ls -la./target
+   - name: Copiando arquivo para Maquina Virtual
+     uses: appleboy/scp-action@master
+     with:
+       port: 22
+       host: listacom.br
+       username: root
+       password: ${{ secrets.PASSWORD }}
+       source: "./target/appmercado-0.0.1-SNAPSHOT.jar"
+       target: "/root/listamercado/"
+   - name: Executando script remoto de deploy
+     uses: appleboy/ssh-action@master
+     with:
+       port: 22
+       username: root
+       host: lista.com.br
+       password: ${{ secrets.PASSWORD }}
+       script: /root/deploy_lista.sh
+      
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
